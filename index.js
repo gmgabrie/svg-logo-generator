@@ -7,6 +7,7 @@ const fs = require('fs');
 // import shape classes from shape.js file
 const {Triangle, Square, Circle } = require('./lib/shapes');
 
+
 // Function to write SVG file to file system based on user inputs
 function writeToFile(fileName, answers) {
   let svgInfo = "";
@@ -28,7 +29,7 @@ function writeToFile(fileName, answers) {
   }
 
   // add text properties to svg object
-  svgInfo += `<text x="100" y="110" text-anchor="middle" font-size="40" fill="${answers.textColor}">${answers.text}</text>`;
+  svgInfo += `<text x="100" y="110" text-anchor="middle" font-size="${answers.textSize}" font-weight="${answers.textBold}" text-decoration="${answers.textUnderline}" fill="${answers.textColor}">${answers.text}</text>`;
   // Closing </g> tag
   svgInfo += "</g>";
   // Closing </svg> tag
@@ -56,6 +57,35 @@ inquirer
     },
     {
       type: 'list',
+      message: 'Would size would you like your text to be?',
+      name: 'textSize',
+      choices: [
+        { name: 'Small', value:'30' },
+        { name: 'Medium', value:'40'},
+        { name: 'Large', value:'50'},
+        { name: 'X-Large', value:'65'},
+      ]
+    },
+    {
+      type: 'list',
+      message: 'Would you like your text to be bold?',
+      name: 'textBold',
+      choices: [
+        { name: 'Yes', value:'bold' },
+        { name: 'No', value:''}
+      ]
+    },
+    {
+      type: 'list',
+      message: 'Would you like your text to be underlined?',
+      name: 'textUnderline',
+      choices: [
+        { name: 'Yes', value:'underline' },
+        { name: 'No', value:''}
+      ]
+    },
+    {
+      type: 'list',
       message: 'What shape would you like your logo to be rendered with?',
       name: 'shape',
       choices: ['Triangle', 'Square', 'Circle'],
@@ -70,8 +100,10 @@ inquirer
     // Error handling for text prompt (user must enter 3 characters or less for logo to generate)
     if (answers.text.length > 3) {
       console.log("Must enter a value of no more than 3 characters");
+  
       promptUser();
-    } else {
+    } 
+    else {
       // Calling write file function to generate SVG file
       writeToFile("logo.svg", answers);
     }
