@@ -27,7 +27,7 @@ SVG-Logo-Generator
   ## Walkthrough Video
   Watch this application in action by clicking on the following link:
 
-  https://drive.google.com/file/d/1BuRvy_krU50meqrkMhs4Y7dLPolxyNuZ/view  
+  https://drive.google.com/file/d/1t-umEEA6rYRtjNnXy-PbC1K0oMSFxRzi/view
 
   ## Licenses
     This project is covered under the MIT license. To learn more about what this means, click the license badge at the top.
