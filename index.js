@@ -12,7 +12,7 @@ const {Triangle, Square, Circle } = require('./lib/shapes');
 function writeToFile(fileName, answers) {
   let svgInfo = "";
   svgInfo =
-    '<svg version="1.1" width="200" height="200" xmlns="http://www.w3.org/2000/svg">';
+    '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
   svgInfo += "<g>";
   svgInfo += `${answers.shape}`;
 
@@ -29,10 +29,8 @@ function writeToFile(fileName, answers) {
   }
 
   // add text properties to svg object
-  svgInfo += `<text x="100" y="110" text-anchor="middle" font-size="${answers.textSize}" font-weight="${answers.textBold}" text-decoration="${answers.textUnderline}" fill="${answers.textColor}">${answers.text}</text>`;
-  // Closing </g> tag
+  svgInfo += `<text x="100" y="110" text-anchor="middle" font-family="${answers.textFont}" font-size="${answers.textSize}" font-style="${answers.textItalic}" font-weight="${answers.textBold}" text-decoration="${answers.textUnderline}" fill="${answers.textColor}">${answers.text}</text>`;
   svgInfo += "</g>";
-  // Closing </svg> tag
   svgInfo += "</svg>";
 
   // Use file system module to write the SVG file and indicate if successful or 
@@ -51,8 +49,18 @@ inquirer
       message: 'Enter up to three characters for your logo:',
     },
     {
+      type: 'list',
+      message: 'Would font would you like your text to be?',
+      name: 'textFont',
+      choices: [
+        { name: 'Helvetica', value:'Helvetica' },
+        { name: 'Monospace', value:'Monospace' },
+        { name: 'Sans-serif', value:'sans-serif' },
+      ]
+    },
+    {
       type: 'input',
-      message: 'What color would you like to use for your logo text?',
+      message: 'What color would you like to use for your logo text (color name or hex code)?',
       name: 'textColor',
     },
     {
@@ -77,6 +85,15 @@ inquirer
     },
     {
       type: 'list',
+      message: 'Would you like your text to be italicized?',
+      name: 'textItalic',
+      choices: [
+        { name: 'Yes', value:'italic' },
+        { name: 'No', value:''}
+      ]
+    },
+    {
+      type: 'list',
       message: 'Would you like your text to be underlined?',
       name: 'textUnderline',
       choices: [
@@ -86,13 +103,13 @@ inquirer
     },
     {
       type: 'list',
-      message: 'What shape would you like your logo to be rendered with?',
+      message: 'What shape would you like to have used for your logo?',
       name: 'shape',
       choices: ['Triangle', 'Square', 'Circle'],
     },
     {
         type: 'input',
-        message: 'What color would you like to use for your logo shape?',
+        message: 'What color would you like to use for your logo shape (color name or hex code)?',
         name: 'shapeColor',
       },
   ])
