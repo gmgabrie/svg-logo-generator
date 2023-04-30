@@ -54,8 +54,8 @@ inquirer
       name: 'textFont',
       choices: [
         { name: 'Helvetica', value:'Helvetica' },
-        { name: 'Monospace', value:'Monospace' },
-        { name: 'Sans-serif', value:'sans-serif' },
+        { name: 'Arial', value:'Arial' },
+        { name: 'Comic Sans MS', value:'Comic Sans MS' },
       ]
     },
     {
